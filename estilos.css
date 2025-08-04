@@ -1,0 +1,368 @@
+body {
+    background-color: #f8f1e9;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    background-image: url('https://images.unsplash.com/photo-1518510955383-09bb404e7b9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.contenedor {
+    max-width: 600px;
+    width: 100%;
+    perspective: 1000px;
+}
+
+.sobre {
+    background-color: #fff9f0;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    position: relative;
+    overflow: hidden;
+}
+
+.sobre::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(90deg, #e8c4c4, #d2a679, #e8c4c4);
+}
+
+.carta {
+    position: relative;
+    z-index: 2;
+}
+
+.encabezado {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.encabezado h1 {
+    font-family: 'Playfair Display', serif;
+    color: #8b5a2b;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.flores {
+    height: 30px;
+    background-image: url('https://images.unsplash.com/photo-1516589091380-5d5e3ad05c3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-position: center;
+    opacity: 0.7;
+    margin: 20px 0;
+}
+
+.contenido {
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.intro {
+    margin-bottom: 20px;
+    text-align: center;
+    font-style: italic;
+}
+
+.destacado {
+    font-weight: bold;
+    text-align: center;
+    color: #8b5a2b;
+    margin: 25px 0;
+    font-size: 18px;
+}
+
+.detalles {
+    background-color: rgba(234, 224, 213, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    margin: 30px 0;
+    border-left: 3px solid #d2a679;
+}
+
+.detalles p {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.detalles span {
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+.agradecimiento {
+    text-align: center;
+    margin: 25px 0;
+    font-weight: 300;
+}
+
+.firma {
+    text-align: right;
+    margin-top: 40px;
+    font-style: italic;
+}
+
+.nombre-firma {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: #8b5a2b;
+    margin-top: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+.nombre-firma::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #8b5a2b;
+}
+
+.nota {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Efectos de animación */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.sobre:hover {
+    transform: rotateY(10deg) rotateX(5deg);
+}
+
+.nombre-firma {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .encabezado h1 {
+        font-size: 24px;
+    }
+
+    .contenido {
+        font-size: 15px;
+    }
+}
+
+.galeria {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.foto-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.foto-invitacion {
+    width: 48%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 5px solid white;
+    cursor: pointer;
+}
+
+.foto-invitacion:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* Modal para ver fotos en grande */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: auto;
+}
+
+.modal-contenido {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    max-height: 80vh;
+    margin-top: 10vh;
+}
+
+.cerrar {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Responsive para galería */
+@media (max-width: 600px) {
+    .foto-container {
+        flex-direction: column;
+    }
+
+    .foto-invitacion {
+        width: 100%;
+    }
+
+    .modal-contenido {
+        width: 95%;
+    }
+}
+
+/* Estilos para el carrusel */
+.carrusel {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 25px auto;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carrusel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carrusel-item {
+    min-width: 100%;
+    position: relative;
+}
+
+.carrusel-item img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    display: block;
+    border: 5px solid white;
+}
+
+.carrusel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    color: #8b5a2b;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.carrusel-control:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #5a3921;
+}
+
+.carrusel-control.prev {
+    left: 15px;
+}
+
+.carrusel-control.next {
+    right: 15px;
+}
+
+.carrusel-indicadores {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.carrusel-indicador {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #8b5a2b;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carrusel-indicador.active {
+    background-color: #8b5a2b;
+}
+
+/* Efecto de transición suave para las imágenes */
+.carrusel-item {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.carrusel-item.active {
+    opacity: 1;
+}
+
+/* Responsive para el carrusel */
+@media (max-width: 600px) {
+    .carrusel-item img {
+        height: 350px;
+    }
+
+    .carrusel-control {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+}
